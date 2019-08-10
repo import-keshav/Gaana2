@@ -1,4 +1,4 @@
-from .models import Music, MusicsOfArtist
+from .models import Music, MusicsOfArtist, Queue
 
 
 def get_artist_of_music(music_id):
@@ -26,8 +26,30 @@ def convert_music_object_to_dict(music_object):
 	return music_dict
 
 
+def get_music_of(category):
+	musics_in_dict = {}
+	if category == 'Home':
+		musics = Music.objects.all()
+		for music in musics:
+			music_dict = convert_music_object_to_dict(music)
+			musics_in_dict[music.id] = music_dict
+		return musics_in_dict
+
+
 def get_music_from_music_id(music_id):
 	music = Music.objects.get(id=music_id)
 	music_dict = convert_music_object_to_dict(music)
 
 	return music_dict
+
+
+def get_queue_list_of_user(user_id):
+	music_queue = []
+	musics_id = Queue.objects.filter(user_id=user_id)
+	for music_id in musics_id:
+		music = Music.objects.get(id=music_id.music_id)
+		music_dict = convert_music_object_to_dict(music)
+		music_dict['id'] = music.id
+		music_queue.append(music_dict)
+
+	return music_queue

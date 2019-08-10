@@ -16,3 +16,8 @@ class Music(models.Model):
 	music_company = models.CharField(max_length=300)
 	language = models.CharField(max_length=20)
 	genre = models.CharField(max_length=50)
+
+
+class Queue(models.Model):
+	music_id = models.IntegerField()
+	user_id = models.IntegerField()

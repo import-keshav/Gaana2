@@ -1,20 +1,19 @@
-
-	<div class="columns">
-		{% for id, music in musics.items %}
-			<div class="column is-3">
-				<div class='box'>
-					<div>
-						<a href="{% url 'song' song_id=id %}"><img src="{{music.image}}"></a>
-					</div>
-					<div>
-						<a href="{% url 'song' song_id=id %}">{{music.title}}</a>
-					</div>
-					<div>
-						{%for artist in music.artists %}
-							<a href="{% url 'artist' artist_name=artist %}" style="color: #cccccc;">{{artist}},</a>
-						{% endfor %}
-					</div>
+<div class="columns">
+	{% for id, music in musics.items %}
+		<div class="column is-3">
+			<div class='box'>
+				<div>
+					<a href="{% url 'song' song_id=id %}"><img src="{{music.image}}"></a>
+				</div>
+				<div>
+					<a href="{% url 'song' song_id=id %}">{{music.title}}</a>
+				</div>
+				<div>
+					{%for artist in music.artists %}
+						<a href="{% url 'artist' artist_name=artist %}" style="color: #cccccc;">{{artist}},</a>
+					{% endfor %}
 				</div>
 			</div>
-		{% endfor %}
-	</div>
+		</div>
+	{% endfor %}
+</div>

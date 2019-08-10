@@ -25,16 +25,23 @@
 				</div>
 			</div>
 
-			{% if user_logged_in %}
-				<div class="navbar-end">
+			<div class="navbar-end">
+				{% if not user_logged_in %}
 					<div class="navbar-item">
 						<a href="{% url 'login' %}">Login</a>
 					</div>
 					<div class="navbar-item">
 						<a href="{% url 'register' %}">Register</a>
 					</div>
-				</div>
-			{% endif %}
+				{% endif %}
+
+				{% if user_logged_in %}
+					<div class="navbar-item">
+						<a href="{% url 'logout' %}">Logout</a>
+					</div>
+				{% endif %}
+			</div>
+
 		</div>
 	</div>
 </div>

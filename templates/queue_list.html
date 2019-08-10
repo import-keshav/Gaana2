@@ -3,8 +3,18 @@
 		<div class="hero-body">
 			<span class="title">Queue</span>
 		</div>
-		<div class="hero-body">
-			<span class="subtitle">No songs in queue yet</span>
-		</div>
+		{% if queue == 'Null'%}
+			<div class="hero-body">
+				<span class="subtitle">No songs in queue yet</span>
+			</div>
+		{% endif %}
+
+		{% if queue != 'Null' %}
+			{% for music in queue %}
+				<div class="box">
+					<a href="{% url 'song' song_id=music.id %}">{{music.title}}</a>
+				</div>
+			{% endfor %}
+		{% endif %}
 	</div>
 </div>

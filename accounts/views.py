@@ -44,3 +44,7 @@ def register(request):
 		messages.info(request, "Passwords didn't matching")
 		return render(request, 'accounts/register.html')
 	return render(request, 'accounts/register.html')
+
+def logout(request):
+	del request.session['username']
+	return redirect('/')

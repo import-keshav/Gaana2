@@ -4,22 +4,20 @@ from . import constants
 
 from django.shortcuts import render
 from django.http import JsonResponse
-
+from django.contrib.auth.models import User, auth
 
 def home(request):
-	musics_in_dict = {}
 	data_to_send = {}
-	user_dict = {}
-	musics = Music.objects.all()
-	for music in musics:
-		music_dict = services.convert_music_object_to_dict(music)
-		musics_in_dict[music.id] = music_dict
+	data_to_send['user_logged_in'] = False
+	data_to_send['queue'] = 'Null'
 
-	data_to_send['musics'] = musics_in_dict
+	data_to_send['musics'] = services.get_music_of('Home')
 	data_to_send['languages'] = constants.languages_of_song
 
-	if 'username' in request.session:
+	if request.session.get('username'):
 		data_to_send['user_logged_in'] = True
+		user = User.objects.get(username=request.session['username'])
+		data_to_send['queue'] = services.get_queue_list_of_user(user.id)
 
 	return render(request, 'home.html', data_to_send)
 
