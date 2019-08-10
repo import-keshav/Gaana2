@@ -21,6 +21,7 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core_music_app.urls')),
+    path('browse/', include('browse_songs.urls')),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

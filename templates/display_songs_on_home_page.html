@@ -3,14 +3,14 @@
 		<div class="column is-3">
 			<div class='box'>
 				<div>
-					<a><img src="{{music.image.url}}"></a>
+					<a href="{% url 'song' song_id=id %}"><img src="{{music.image}}"></a>
 				</div>
 				<div>
-					<a class="">{{music.title}}</a>
+					<a href="{% url 'song' song_id=id %}">{{music.title}}</a>
 				</div>
 				<div>
 					{%for artist in music.artists %}
-						<a class="" style="color: #cccccc;">{{artist}},</a>
+						<a href="{% url 'artist' artist_name=artist %}" style="color: #cccccc;">{{artist}},</a>
 					{% endfor %}
 				</div>
 			</div>
