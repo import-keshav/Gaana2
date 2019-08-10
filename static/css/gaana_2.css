@@ -1,0 +1,21 @@
+/*.top_nav_bar {}
+
+.songs_on_home_page {
+	overflow: scroll;
+}
+
+.queue_list {
+	position: fixed;
+	bottom: 50px;
+	left: 0px;
+	overflow: scroll;
+	height: 534px;
+	top: 53px;
+}
+
+.music_player {
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+}
+*/

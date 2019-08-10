@@ -6,5 +6,4 @@ urlpatterns = [
 	path('', views.home),
 	path('song/<int:song_id>', views.song, name='song'),
 	path('artist/<str:artist_name>', views.artist, name='artist')
-
 ]

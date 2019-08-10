@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="footer">
+	<audio controls class="music_player is-primary">
+		<source src="{{music_info.audio}}" type="audio/mpeg">
+	</audio>
+</div>
+
+<script type="text/javascript" src="{% static 'javascript/player.js' %}"></script>
+
+<!-- {{music_info.audio}} -->

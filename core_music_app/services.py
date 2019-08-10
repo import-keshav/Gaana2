@@ -9,6 +9,7 @@ def get_artist_of_music(music_id):
 
 	return artists_list
 
+
 def convert_music_object_to_dict(music_object):
 	music_dict = {}
 	music_dict['title'] = music_object.title
@@ -23,6 +24,7 @@ def convert_music_object_to_dict(music_object):
 	music_dict['artists'] = get_artist_of_music(music_object.id)
 
 	return music_dict
+
 
 def get_music_from_music_id(music_id):
 	music = Music.objects.get(id=music_id)

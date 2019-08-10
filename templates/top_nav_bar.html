@@ -25,11 +25,16 @@
 				</div>
 			</div>
 
-			<div class="navbar-end">
-				<div class="navbar-item">
-					<a href="">Login</a>
+			{% if user_logged_in %}
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<a href="{% url 'login' %}">Login</a>
+					</div>
+					<div class="navbar-item">
+						<a href="{% url 'register' %}">Register</a>
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		</div>
 	</div>
 </div>
