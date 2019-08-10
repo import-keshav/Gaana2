@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<!-- Top NavBar -->
+	{% include 'top_nav_bar.html' %} 
+
+	<div class="columns">
+		<div class="column is-2">
+			<!-- Queue List -->
+			{% include 'queue_list.html' %}	
+		</div>
+
+		<div class="column is-8">
+
+			<div class="columns">
+				<div class="column">
+					{% include 'discover_different_languages_song_bar.html' %}
+				</div>
+			</div>
+
+			<!--  Songs on Home page-->
+			<div class="columns">
+				<div class="column">
+					{% include 'display_songs_on_home_page.html' %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="columns">
+		<div class="column">
+			{% include 'song_player.html' %} 
+		</div>
+	</div>
+
+{% endblock %}
