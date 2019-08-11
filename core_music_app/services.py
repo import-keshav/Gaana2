@@ -1,4 +1,5 @@
 from .models import Music, MusicsOfArtist, Queue
+from django.contrib.auth.models import User, auth
 
 
 def get_artist_of_music(music_id):
@@ -12,6 +13,7 @@ def get_artist_of_music(music_id):
 
 def convert_music_object_to_dict(music_object):
 	music_dict = {}
+	music_dict['id'] = music_object.id
 	music_dict['title'] = music_object.title
 	music_dict['audio'] = music_object.audio.url   # Media files cant add in json, so we add url of media file in json
 	music_dict['lyrics'] = music_object.lyrics
@@ -53,3 +55,16 @@ def get_queue_list_of_user(user_id):
 		music_queue.append(music_dict)
 
 	return music_queue
+
+def add_song_in_queue(song_id, user_id):
+	music = Music.objects.get(id=song_id)
+	if Queue.objects.filter(music_id=song_id).exists():
+		return False
+	next_song_in_queue = Queue(music_id=music.id, user_id=user_id)
+	next_song_in_queue.save()
+
+	return True
+
+def get_user_id_from_username(username):
+	user = User.objects.get(username=username)
+	return user.id

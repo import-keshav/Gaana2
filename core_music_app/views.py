@@ -26,8 +26,10 @@ def song(request, song_id):
 	music = Music.objects.get(id=song_id)
 	music_dict = services.convert_music_object_to_dict(music)
 
-	return render(request, 'song/song.html', {'music_info': music_dict})
-	# return JsonResponse({'music_info': music_dict})
+	user = User.objects.get(username=request.session['username'])	
+	queue = services.get_queue_list_of_user(user.id)
+
+	return render(request, 'song/song.html', {'music_info': music_dict, 'queue': queue})
 
 
 def artist(request, artist_name):
@@ -38,3 +40,13 @@ def artist(request, artist_name):
 		musics.append(music_dict)
 
 	return JsonResponse({'musics': musics})
+
+def addSongInQueue(request):
+	if request.session['username']:
+		song_id = request.POST['song_id']
+		user_id = services.get_user_id_from_username(request.session['username'])
+		if services.add_song_in_queue(song_id, user_id):
+			music = services.get_music_from_music_id(song_id)
+			return JsonResponse({'is_added': True, 'message': 'Song added suceesfully', 'music': music})
+		return JsonResponse({'is_added': False, 'message': 'Song already in Queue'})
+

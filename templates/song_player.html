@@ -1,11 +1,34 @@
 {% load static %}
 
-<div class="footer">
-	<audio controls class="music_player is-primary">
-		<source src="{{music_info.audio}}" type="audio/mpeg">
-	</audio>
+<audio id="audioPlayer">
+	<source src="{{music_info.audio}}" type="audio/mpeg">
+</audio>
+<meta id="currentSong" data-other="{{music_info.id}}">
+<meta id="csrf_token" data-other="{{csrf_token}}">
+
+<div class="block audio_player has-background-grey-dark">
+	<div class="columns">
+		<div class="column is-2"></div>
+		<div class="column is-3">		
+			<div class="player_buttons">
+				<i class="fa fa-step-backward player_button has-text-white" style="font-size:30px"></i>
+				<i class="fa fa-play player_button has-text-white" style="font-size:30px" id="play_button"></i>
+				<i class="fa fa-step-forward player_button has-text-white" style="font-size:30px"></i>
+			</div>
+		</div>
+		{% if music_info.image|length %}
+			<div class="column is-1">
+				<div class="block">
+					<img src="{{music_info.image}}" style="width: 70%; height: 50px; bottom: 0;">
+				</div>
+			</div>
+			<div class="column is-2">
+				<span class="button is-inverted" onclick="addSongInQueue()">Add In Queue</span>
+			</div>
+		{% endif %}
+
+	</div>
 </div>
 
-<script type="text/javascript" src="{% static 'javascript/player.js' %}"></script>
 
-<!-- {{music_info.audio}} -->
+<script type="text/javascript" src="{% static 'javascript/player.js' %}"></script>
